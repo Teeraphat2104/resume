@@ -56,6 +56,12 @@ const resume = {
     { name: 'GitHub' },
     { name: 'Postman' },
   ],
+  aiSkills: [
+    { name: 'Codex' },
+    { name: 'Gemini' },
+    { name: 'ChatGPT' },
+    { name: 'Claude' },
+  ],
   projects: [
     {
       name: 'Graduate Reporting System',
@@ -91,7 +97,7 @@ const resume = {
       ],
     },
   ],
-  languages: ['Thai - Native', 'English - Working Proficiency'],
+  languages: ['Thai - Mother tongue', 'English - Fairly proficient in reading and writing, basic conversational skills'],
 }
 
 function App() {
@@ -166,10 +172,22 @@ function App() {
               </div>
             </section>
 
+            <section className="panel">
+              <div className="panel-header">
+                <span className="section-index">03</span>
+                <h2>AI Tools</h2>
+              </div>
+              <div className="chip-list ai-chip-list">
+                {resume.aiSkills.map((skill) => (
+                  <SkillChip key={skill.name} name={skill.name} />
+                ))}
+              </div>
+            </section>
+
             <section className="panel side-stack">
               <div>
                 <div className="panel-header">
-                  <span className="section-index">03</span>
+                  <span className="section-index">04</span>
                   <h2>Education</h2>
                 </div>
                 <div className="education-list">
@@ -185,7 +203,7 @@ function App() {
 
               <div>
                 <div className="panel-header">
-                  <span className="section-index">04</span>
+                  <span className="section-index">05</span>
                   <h2>Languages</h2>
                 </div>
                 <ul className="language-list">
@@ -204,7 +222,7 @@ function App() {
 
             <section className="panel content-panel">
               <div className="section-heading">
-                <span className="section-index">05</span>
+                <span className="section-index">06</span>
                 <h3>Projects</h3>
               </div>
 

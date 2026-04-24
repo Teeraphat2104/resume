@@ -270,9 +270,19 @@ body {
   line-height: 1;
 }
 
+.skill-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
 .chip-list {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
+}
+
+.ai-chip-list {
+  grid-template-columns: 1fr;
 }
 
 .chip {
