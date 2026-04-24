@@ -97,94 +97,123 @@ const resume = {
 function App() {
   return (
     <main className="resume-shell">
-      <section className="resume-card">
-        <aside className="sidebar">
-          <div className="identity-block">
-            <span className="eyebrow">Resume</span>
-            <h1>{resume.name}</h1>
-            <p className="role">{resume.role}</p>
+      <section className="resume-layout">
+        <header className="hero-card">
+          <div className="hero-copy">
+            <span className="eyebrow">Full Stack Resume</span>
+            <div className="hero-heading">
+              <div className="identity-mark">TL</div>
+              <div>
+                <h1>{resume.name}</h1>
+                <p className="role">{resume.role}</p>
+              </div>
+            </div>
             <p className="summary">{resume.summary}</p>
-          </div>
 
-          <div className="contact-block">
-            <h2>Contact</h2>
-            <ContactList
-              items={[
-                { icon: 'bi bi-geo-alt', value: resume.location },
-                { icon: 'bi bi-telephone', value: resume.phone },
-                { icon: 'bi bi-line', value: resume.lineID },
-                { icon: 'bi bi-envelope', value: resume.email },
-                { icon: 'bi bi-globe', value: resume.website },
-              ]}
-            />
-          </div>
-
-          <div className="sidebar-section">
-            <h2>Skills</h2>
-            <div className="chip-list">
-              {resume.skills.map((skill) => (
-                <SkillChip key={skill.name} name={skill.name} />
-              ))}
+            <div className="hero-badges">
+              <span className="hero-badge">
+                <i className="bi bi-geo-alt"></i>
+                {resume.location}
+              </span>
+              <span className="hero-badge">
+                <i className="bi bi-kanban"></i>
+                {resume.stats[1].value}
+              </span>
+              <span className="hero-badge">
+                <i className="bi bi-stack"></i>
+                {resume.stats[2].value}
+              </span>
             </div>
           </div>
 
-          <div className="sidebar-section">
-            <h2>Languages</h2>
-            <ul>
-              {resume.languages.map((language) => (
-                <li key={language}>{language}</li>
-              ))}
-            </ul>
+          <div className="hero-stats">
+            {resume.stats.map((stat) => (
+              <article key={stat.label} className="stat-card">
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </article>
+            ))}
           </div>
-        </aside>
+        </header>
 
-        <section className="content">
-          <div className="hero-panel">
-            <div>
-              <span className="eyebrow">Profile Snapshot</span>
-              <h2>Shipping practical web systems with strong backend structure and polished interfaces.</h2>
-            </div>
+        <section className="resume-grid">
+          <aside className="side-column">
+            <section className="panel">
+              <div className="panel-header">
+                <span className="section-index">01</span>
+                <h2>Contact</h2>
+              </div>
+              <ContactList
+                items={[
+                  { icon: 'bi bi-geo-alt', value: resume.location },
+                  { icon: 'bi bi-telephone', value: resume.phone },
+                  { icon: 'bi bi-line', value: resume.lineID },
+                  { icon: 'bi bi-envelope', value: resume.email },
+                  { icon: 'bi bi-globe', value: resume.website },
+                ]}
+              />
+            </section>
 
-            <div className="stats-grid">
-              {resume.stats.map((stat) => (
-                <article key={stat.label} className="stat-card">
-                  <strong>{stat.value}</strong>
-                  <span>{stat.label}</span>
-                </article>
-              ))}
-            </div>
-          </div>
+            <section className="panel">
+              <div className="panel-header">
+                <span className="section-index">02</span>
+                <h2>Skills</h2>
+              </div>
+              <div className="chip-list">
+                {resume.skills.map((skill) => (
+                  <SkillChip key={skill.name} name={skill.name} />
+                ))}
+              </div>
+            </section>
 
-          <ExperienceSection items={resume.experience} />
+            <section className="panel side-stack">
+              <div>
+                <div className="panel-header">
+                  <span className="section-index">03</span>
+                  <h2>Education</h2>
+                </div>
+                <div className="education-list">
+                  {resume.education.map((item) => (
+                    <article key={`${item.school}-${item.degree}`} className="education-card">
+                      <h4>{item.degree}</h4>
+                      <p>{item.school}</p>
+                      <span>{item.period}</span>
+                    </article>
+                  ))}
+                </div>
+              </div>
 
-          <section className="content-section">
-            <div className="section-heading">
-              <span className="section-index">02</span>
-              <h3>Projects</h3>
-            </div>
+              <div>
+                <div className="panel-header">
+                  <span className="section-index">04</span>
+                  <h2>Languages</h2>
+                </div>
+                <ul className="language-list">
+                  {resume.languages.map((language) => (
+                    <li key={language}>{language}</li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          </aside>
 
-            <div className="project-grid">
-              {resume.projects.map((project) => (
-                <ProjectCard key={project.name} project={project} />
-              ))}
-            </div>
-          </section>
+          <section className="main-column">
+            <section className="panel content-panel">
+              <ExperienceSection items={resume.experience} />
+            </section>
 
-          <section className="content-section">
-            <div className="section-heading">
-              <span className="section-index">03</span>
-              <h3>Education</h3>
-            </div>
+            <section className="panel content-panel">
+              <div className="section-heading">
+                <span className="section-index">05</span>
+                <h3>Projects</h3>
+              </div>
 
-            <div className="education-list">
-              {resume.education.map((item) => (
-                <article key={`${item.school}-${item.degree}`} className="education-card">
-                  <h4>{item.degree}</h4>
-                  <p>{item.school}</p>
-                  <span>{item.period}</span>
-                </article>
-              ))}
-            </div>
+              <div className="project-grid">
+                {resume.projects.map((project) => (
+                  <ProjectCard key={project.name} project={project} />
+                ))}
+              </div>
+            </section>
           </section>
         </section>
       </section>
